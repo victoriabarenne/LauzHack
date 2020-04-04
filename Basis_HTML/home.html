@@ -3,22 +3,11 @@
 	<head>
 		<title>LauzHack</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="home.css">
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+        <script src="https://d3js.org/d3-collection.v1.min.js"></script><link rel="stylesheet" href="home.css">
 		
-		<script src="https://d3js.org/d3.v4.min.js"></script>
 	</head>
-
-	<style>
-    		svg rect {
-        	fill: lightblue;
-    		}
-
-   		 svg text {
-       			fill: black;
-        		font: 10px sans-serif;
-        		text-anchor: end;
-    		}
-	</style>
 
 	<body>
 		<div id="title">
@@ -47,7 +36,11 @@ Phasellus et nunc in sem commodo ultrices id non arcu. Donec id posuere ante. Al
 Nam tincidunt luctus est a aliquam. Pellentesque pharetra lacus ac varius iaculis. Fusce nec feugiat libero. Nullam id urna diam. Integer consequat orci eu rutrum lobortis. In hac habitasse platea dictumst. In blandit nibh at nulla tristique, a mollis massa efficitur. Donec sed sem porttitor, porttitor orci vel, ornare lorem. Suspendisse massa lectus, ornare et erat nec, bibendum varius urna. Donec auctor faucibus lectus, eu maximus diam tincidunt sit amet. Suspendisse accumsan tellus quis orci cursus consectetur. Etiam facilisis sed diam vitae facilisis. Aenean sed maximus felis, eget sodales augue. Quisque viverra pulvinar ante, imperdiet scelerisque est cursus vel.
 
 Phasellus pretium pulvinar fringilla. Donec blandit elit sit amet aliquet congue. Donec a vehicula mi. Vestibulum scelerisque tellus enim, et tincidunt diam fermentum ac. Pellentesque vulputate laoreet pharetra. Aenean at sollicitudin felis. Praesent tempor augue mattis sem sodales ornare. Donec et leo pellentesque, pretium nisl a, posuere augue. Fusce sed luctus libero. Nulla facilisis purus eu ante blandit, in lobortis eros pretium. Nulla fermentum, nisi non viverra accumsan, est arcu cursus lorem, blandit euismod nibh lacus quis odio. Mauris faucibus risus urna, id pulvinar nunc pharetra in. Nullam rhoncus dui sit amet dictum consectetur. Cras congue vel eros ultrices cursus. Phasellus pretium augue turpis, rhoncus convallis orci viverra ut. Nulla ante diam, ornare vitae metus in, facilisis facilisis lorem.
-
+            </p>
+                        </div>
+          <div id = "vis"></div>
+          <script src="sir.js"></script>
+            <p>
 Aenean laoreet odio ac est pharetra vestibulum. Nam ultricies felis sed hendrerit convallis. Nullam porttitor nunc sit amet eros rhoncus, faucibus lacinia leo scelerisque. Curabitur justo nisi, elementum id dictum ut, ullamcorper vitae lacus. Pellentesque laoreet auctor eros a malesuada. Donec laoreet ut leo non feugiat. Aenean faucibus porttitor tortor in dapibus. Vivamus quis scelerisque ipsum. Ut vestibulum, purus eu maximus pellentesque, turpis sem laoreet felis, a mollis nisl ante fermentum dui. Fusce posuere est in metus consequat suscipit. Aenean finibus arcu ut porttitor porttitor. Nunc vitae nisl eget eros tincidunt condimentum pellentesque quis felis. In hac habitasse platea dictumst. Vestibulum imperdiet, nulla ut dictum faucibus, orci massa dignissim orci, at gravida erat diam ut eros.
 
 Donec auctor, lorem sed sodales gravida, ipsum justo dapibus velit, sed rhoncus risus ipsum non elit. Integer quis eros nec neque consectetur consequat sed et neque. Donec eu imperdiet purus, et feugiat arcu. Duis volutpat quam id sapien venenatis, a iaculis nulla imperdiet. Mauris posuere mi quis dolor lobortis molestie. Suspendisse iaculis ligula ac enim tempus, nec feugiat tellus mollis. Vestibulum dignissim risus ut quam lobortis porttitor.
@@ -58,21 +51,5 @@ Nam vel sagittis turpis. Quisque fringilla id augue sit amet commodo. Aenean a m
 
 			</p>
 
-			<svg class="chart" width="700" height="400">
-        			<g transform="translate(0,0)">
-            				<rect width="50" height="19"></rect>
-            				<text x="47" y="9.5" dy=".35em">5</text>
-        			</g>
-        			<g transform="translate(0,20)">
-            				<rect width="100" height="19"></rect>
-            				<text x="97" y="9.5" dy=".35em">10</text>
-        			</g>
-        			<g transform="translate(0,40)">
-            				<rect width="120" height="19"></rect>
-            				<text x="117" y="9.5" dy=".35em">12</text>
-        			</g>
-    			</svg>
-
-		</div>
 	</body>
 </html>

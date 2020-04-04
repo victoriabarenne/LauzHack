@@ -8,6 +8,7 @@
 /* Wallpaper */
 body{
 	background-color: #fff9e6;
+       font-family: sans-serif;
 }
 
 /*Title*/
@@ -86,14 +87,29 @@ p{
 	margin-bottom: 20px;
 	margin-top:20px;
 }
+   
+ text.chartName {           
+       font-size: 30;         
+       font-weight: bold;     
+       text-anchor: middle;   
+ }
+ 
+ /*Javascript implement*/
 
+ .line {                    
+      fill: none;            
+    stroke-width: 3;       
+ }
 
-
-
-
-
-
-
+#vis{
+    background-color: white;
+    margin-left: 40px; 
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 70%;
+    float: left;   
+}
 
 
 
