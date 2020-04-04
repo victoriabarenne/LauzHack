@@ -7,8 +7,9 @@
 
 /* Wallpaper */
 body{
-	background-color: #fff9e6;
-       font-family: sans-serif;
+	/*background-color: #fff9e6; beige */
+    background-color: #f3f3f3;
+    font-family: sans-serif;
 }
 
 /*Title*/
@@ -21,6 +22,8 @@ h1{
 	text-align : center;
 	/* text-transform : uppercase; */
 	font-family: Trattatello, fantasy;
+	background-color: black; /*Prevent transparency issues*/
+    color: white;
 	
 }
 
@@ -32,7 +35,7 @@ nav ul{
 
 nav li{
 	float: left; /*Align the list horizontaly*/
-	width: 20%; /*20% because 5 elements*/
+	width: 16.65%; /*20% because 5 elements*/
 	text-align : center;
 }
 
@@ -41,20 +44,21 @@ nav {
 	margin: 0px auto 40px auto;
 	position: sticky; /*Keep the nav in the top*/
 	top : 0px;
-	background-color: #fff9e6; /*Prevent transparency issues*/
-	border-bottom : 2px outset black;
+	/* background-color: #fff9e6; /*Prevent transparency issues*/
+	background-color: black; /*Prevent transparency issues*/
+	border-bottom : 2px outset white;
 }
 
 nav a{
 	display: block; /*Make the all block clickable*/
 	text-decoration: none; /*Remove the underline*/
-	color: black;
+    color : white;
 	/* border: 2px solid transparent; /* Prevent the alignement problem if the hover:border is set*/
 	padding: 10px 0px; /*Display the nav separated from the rest*/
 }
 
 nav a:hover{
-	color: black;
+	color: red;
 	/* border: 2px solid gold; /*Add a border when before click*/
 	font-weight: bold; /*Transform to bold when mouse is over*/
 }
@@ -79,6 +83,7 @@ p{
 	margin-left: 40px;
 	margin-bottom: 20px;
 	margin-top:20px;
+    text-align : justify;
 }
 
 .chart{
@@ -109,6 +114,7 @@ p{
     margin-bottom: 20px;
     width: 70%;
     float: left;   
+	border : 2px outset black;
 }
 
 
