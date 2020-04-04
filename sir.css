@@ -1,0 +1,15 @@
+body {
+	font-family: sans-serif;
+/*	font-weight: bold;*/
+}
+
+text.chartName {
+	font-size: 30;
+	font-weight: bold;
+	text-anchor: middle;
+}
+
+.line {
+	fill: none;
+	stroke-width: 3;
+}
