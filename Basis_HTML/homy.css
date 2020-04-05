@@ -1,0 +1,94 @@
+/*Reset CSS*/
+
+*{
+	margin : 0px;
+	padding : 0px;
+}
+
+/* Wallpaper */
+body{
+	/*background-color: #fff9e6; */
+    /* background-color: #f3f3f3; */
+    background-color: #f5f5f5;
+    font-family: sans-serif;
+}
+
+/*Title*/
+#title{
+	width : 100%;
+	/*background-image: url("bluemarble.jpg"); /*Prevent transparency issues*/
+	/*background-image: 301354; /*Prevent transparency issues*/
+}
+
+h1{
+	/*background-color:lightGreen; /* Maintenance */
+	text-align : center;
+	/* text-transform : uppercase; */
+	font-family: Times New Roman;
+	/*background-image: url("bluemarble.jpg"); /*Prevent transparency issues*/
+	background-color: black; /*Prevent transparency issues*/
+    color: white;
+	
+}
+
+
+/* Horizontal Navigation menu*/
+
+nav ul{
+	list-style-type: none; /*Do not show puces in nav*/
+}
+
+nav li{
+	float: left; /*Align the list horizontaly*/
+	width: 16.65%; /*20% because 5 elements*/
+	text-align : center;
+}
+
+nav {
+	width: 100%; /*Center nav*/
+	margin: 0px auto 0px auto;
+	position: sticky; /*Keep the nav in the top*/
+	top : 0px;
+	/* background-color: #fff9e6; /*Prevent transparency issues*/
+	background-color: black; /*Prevent transparency issues*/
+	/*background-image: url("bluemarble.jpg"); /*Prevent transparency issues*/
+	border-bottom : 2px outset white;
+}
+
+nav a{
+	display: block; /*Make the all block clickable*/
+	text-decoration: none; /*Remove the underline*/
+    color : white;
+	/* border: 2px solid transparent; /* Prevent the alignement problem if the hover:border is set*/
+	padding: 10px 0px; /*Display the nav separated from the rest*/
+}
+
+nav a:hover{
+	color: lightblue;
+	/* border: 2px solid gold; /*Add a border when before click*/
+	font-weight: bold; /*Transform to bold when mouse is over*/
+}
+
+nav ul::after{
+	content: "";
+	display: table; /*Clear the sheet after nav*/
+	clear: both;
+}
+
+/*Contenu*/
+#vid{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

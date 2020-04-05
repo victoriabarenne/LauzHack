@@ -1,78 +1,220 @@
-var dataset = {}; // will store the SIR dataset
-var SIR = {}; // stores the columns S, I, R
+var dataset = {}; 
+var SIR = {};
+var series = {};
+var len = 0; 
+var legend; 
 
-var margin = {top: 100, right: 15, bottom: 100, left: 50}
-  //, width = parent.innerWidth - 2*margin.left - 2*margin.right
-  , width = document.getElementById("vis").clientWidth - 2*margin.left - 2*margin.right
-  , height = parent.innerHeight - 2*margin.top - 2*margin.bottom;
-var legendRectSize = 18;
+var margin = {top: 50, right: 50, bottom: 50, left: 50}
+  , width = document.getElementById("vis").clientWidth
+  , height = window.innerHeight - 2*margin.top - 2*margin.bottom;
+var legendRectSize = 30;
 var legendSpacing = 4;
 
-//make space for the graph plot
-    //var selection = +d3select('#vis').style("width").slice(0,-2);
-    //width = selection[0][0].clientWidth;
+var stack = d3.stack()
+    .keys(["I", "S", "R"])
+    .order(d3.stackOrderNone)
+    .offset(d3.stackOffsetNone);
 
-// make space for the graph plot 
+// var tip = d3.tip()
+//   .attr("class", "d3-tip")
+//   .offset([-10, 0]) // offset is for positioning (avoid overlap)
+//   .html(function(d) {
+//     return d.key;  }); // see what this gives 
+
+var svg = d3.select("#vis")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", 2*margin.top);
+
+var gTime = svg.append("g")
+  .attr("transform", "translate(150, 30)");
+
+var hTime = svg.append("g")
+  .attr("transform", "translate(450, 30)")
+
+svg.append("text")
+.text("Parameter")
+.attr("x", margin.top/1.3)
+.attr("y", margin.left/1.3);
+
 var svg = d3.select("#vis").append("svg")
-	.attr("width", width + margin.left + margin.right)
-	.attr("height", height + margin.top + margin.bottom)
-	.attr("transform", "translate(" + (margin.left/2) +  ", 0)")
-	.append("g")
-	.attr("transform", "translate(" + 1.5*margin.left + "," + (margin.top/2) + ")");
+  .attr("width", width)
+  .attr("height", height + margin.top + margin.bottom)
+  .attr("transform", "translate(" + (margin.left/2) +  ", 0)")
+  .append("g")
+  .attr("transform", "translate(" + 1.5*margin.left + "," + (margin.top/2) + ")");
 
-// second svg for the bar plot in the original question (coming after the line graph)
-// var barsvg = d3.select("#vis").append("svg")
-// 		.attr("width", width + margin.left + margin.right)
-// 		.attr("height", height + margin.top + margin.bottom)
-// 		.attr("transform", "translate(" + (margin.left/2) + ", 0)") // translation to make room for axis label
-// 	.append("g")
-// 		.attr("transform", "translate(" + 2*margin.left + "," + (margin.top/2) + ")");
+// key is supposed to be here but I removed the earthquake text 
+var g = svg.append("g") 
+    .attr("class", "key") 
+    .attr("transform", "translate(" + 2*margin.right + ",100)"); 
 
-d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/resultat.csv", function(d, i) {
-	return { // day will be accessed via index 
-		ind: +i, // convert string to index
-		S: +d.S, // convert string to float
-		I: +d.I, // convert string to float
-		R: +d.R, // convert string to float 
-	}
-}).then(function(data) {
-	dataset = data; // storing S, I, R in global variable dataset
+// range for slider 
+var parameter = d3.range(0, 2);
 
-	var xScale = d3.scaleLinear()
-		.domain([0, dataset.length]) // number of entries in the dataset 
-		.range([0, width-2.5*margin.right])
-		.nice(); // 2.5 is for
+// function creating slider
+var sliderTime = d3.sliderBottom()
+  .min(d3.min(parameter))
+  .max(d3.max(parameter))
+  .step(1)
+  .width(300)
+  .default(0) 
+  .on('onchange', handleChange); // handles thisYear
 
-	var yScale = d3.scaleLinear()
-		.domain([0, d3.max(dataset.map(dataset => dataset.S))]) // S will have highest value since it can be tot pop
-		.range([height, margin.top/2])
-		.nice();
+var rightNow = 0;
+var after = d3.nest(); // to store data 
 
-	// append x axis
-	svg.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(xScale));
+var promises = [d3.dsv(",", "example.csv", function(d, i) {
+  return {
+    ind: i,
+    S: +d["S"+rightNow],
+    I: +d["I"+rightNow],
+    R: +d["R"+rightNow]
+  }
+})] // we will have to handle this by creating a csv file with multiple columns indexed by the parameter
+             
+function handleChange(val) {
+  rightNow = val; // update value on cursor 
+  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+    return {
+      ind: i,
+      S: +d["S"+rightNow],
+      I: +d["I"+rightNow],
+      R: +d["R"+rightNow] }
+  });
+  d3.selectAll(".mylayers").remove();
+  d3.selectAll(".xaxis").remove();
+  d3.selectAll(".yaxis").remove();
+  d3.selectAll(".color").remove();
+  d3.selectAll(".legend").remove();
+    d3.selectAll(".text").remove();
 
-	svg.append("g")
-		.attr("class", "y axis")
-		.call(d3.axisLeft(yScale));
 
-	var line = d3.line() 
-		.x(function(d) { return xScale(parseInt(d.ind)); })
-		.y(function(d) { return yScale(parseFloat(d["S"])); });
+  Promise.all(promises).then(ready);
+}
 
-	svg.append("path")
-		.datum(dataset)
-		.attr("class", "line")
-		.attr("d", line)
-		//.style("stroke", "steelblue"); 
-		.style("stroke", "steelblue"); 
+gTime.call(sliderTime);
+Promise.all(promises).then(ready); 
+// once we have changed the slider, we want the new data to appear 
 
-	svg.append("path")
-		.datum(dataset)
-		.attr("class", "line")
-		.attr("d", line)
-		.style("stroke", "steelblue");
+function ready(data) {
+  // svg.call(tip);
+  series = stack(data[0]);
+  len = series[0].length;
 
-})
+// I need to make everything disappear then appear again 
+
+  var xScale = d3.scaleLinear()
+    .domain([0, len]) // number of entries in each column of dataset 
+    .range([0, width/2.9]); // 2.5 is for
+
+  var yScale = d3.scaleLinear()
+    .domain([0, 1000000])
+    //.domain([0, series[0][0].data.S]) // S will have highest value since it can be tot pop
+    .range([height, margin.top/2])
+    .nice();
+
+  var keys = ["I", "S", "R"];
+  var color = d3.scaleOrdinal()
+    .domain(keys)
+    .range(["#F1716D", "#FCD186", "#CDEAA4"]);
+
+  var area = d3.area()
+    .x(function(d) { return xScale(d.data.ind); })
+    .y0(function(d) { return yScale(d[0]); })
+    .y1(function(d) { return yScale(d[1]); })
+
+  var areaChart = svg.append("g")
+    .attr("clip-path", "url(#clip)")
+
+  areaChart
+    .selectAll("mylayers")
+    .data(series)
+    .enter().append("path")
+      .attr("class", function(d) { return "myArea " + d.key })
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+      .attr("class", "color")
+
+    // x axis
+    svg.append("g")
+    .attr("class", "xaxis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale)
+      .tickPadding(10));
+
+  // y axis
+  svg.append("g")
+    .attr("class", "yaxis")
+    .call(d3.axisLeft(yScale));
+
+    svg.append("g")
+    .attr("class", "xaxis")
+    .attr("transform", "translate(" + width/2.2 + "," + height + ")")
+    .call(d3.axisBottom(xScale)
+      .tickPadding(10));
+
+  // y axis
+  svg.append("g")
+    .attr("class", "yaxis")
+    .attr("transform", "translate(" + width/2.2 + ",0)")
+    .call(d3.axisLeft(yScale));
+
+      areaChart
+    .selectAll("mylayers")
+    .data(series)
+    .enter().append("path")
+      .attr("transform", "translate(" + width/2.2 + ",0)")
+      .attr("class", function(d) { return "myArea " + d.key })
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+      .attr("class", "color")
+
+    // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width/1.25)
+      .attr("y", height*1.09 )
+      .text("Time elapsed");
+
+  // Add Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 0)
+      .attr("class", "text")
+      .attr("y", -2)
+      .text("Total Population")
+      .attr("text-anchor", "start")
+    
+
+    legend = svg.selectAll(".legend")                    
+      .data(keys)
+      .enter().append("g") // setting the groups to append the rectangles 
+      // .attr("class", "legend")                                 
+      .attr("transform", function(d, i) {                   
+        var hor = width/1.2;           
+        var ver = 2.8*margin.top + i/1.3*margin.top;                 
+        return "translate(" + hor + "," + ver + ")"; });    
+
+  legend.append("rect")   
+    .attr("class", "legend")                           
+    .attr("width", legendRectSize)                  
+    .attr("height", legendRectSize)                        
+    .style("fill", function(d) {
+      console.log(d)
+      return color(d); })                          
+    .style("stroke", function(d) {
+      return color(d); });  
+
+  legend.append("text")  
+    .attr("class", "legend")                       
+    .attr("x", legendRectSize + 4*legendSpacing)           
+    .attr("y", 5.6*legendSpacing)              
+    .text(function(d) { 
+      return d; }) // this d comes from the legend data
+    .style("font-size", 20)
+    .style("text-anchor", "middle");  
+
+
+
+}
