@@ -84,14 +84,13 @@ h2 {
 	/*background-color : lightBlue; /*Maintenance*/
 	margin-left : 60px;
 	margin-right :40px;
-	margin-bottom : 20 px;
+	margin-bottom : 20px;
 }
 
 p{
 	/*background-color: lightGreen; /* Maintenance*/
 	margin-right: 40px;
 	margin-left: 40px;
-	margin-bottom: 20px;
 	margin-top:20px;
     text-align : justify;
 }
@@ -141,11 +140,22 @@ img.rightfloat {
 /*Varier le margin avec la section précédente
 les différentes sections des 3 modèles sur SCM*/
 #model2{                    
-    margin-top:50px;     
+    margin-top:80px;     
  }
 
-#model3{                    
-    margin-top:180px;     
+ #model3{                    
+    margin-top:80px;
+    margin-bottom: 100px;     
+ }
+
+ .tiret {
+	margin-left:80px;
+	list-style-type: square;
+}
+
+#comparaison1, #comparaison2, #comparaison3, #comparaison4{                    
+    margin-top:30px;
+    margin-bottom: 40px;     
  }
 
 /* ========================== Text ============================== */
@@ -164,6 +174,7 @@ a{
     text-decoration:none;
     color: black;
 }
+
 
 
 
