@@ -39,6 +39,7 @@ h1{
 
 nav ul{
 	list-style-type: none; /*Do not show puces in nav*/
+    margin-left: 0px;
 }
 
 nav li{
@@ -153,10 +154,16 @@ les différentes sections des 3 modèles sur SCM*/
     margin-left: 100;
 }
 
+ul{
+    margin-left: 40px;
+    list-style-type:none;
+    text-decoration: none;
+}
 
-
-
-
+a{
+    text-decoration:none;
+    color: black;
+}
 
 
 
