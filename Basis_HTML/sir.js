@@ -28,7 +28,7 @@ var svg = d3.select("#vis").append("svg")
 // 	.append("g")
 // 		.attr("transform", "translate(" + 2*margin.left + "," + (margin.top/2) + ")");
 
-d3.dsv(",", "resultat.csv", function(d, i) {
+d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/resultat.csv", function(d, i) {
 	return { // day will be accessed via index 
 		ind: +i, // convert string to index
 		S: +d.S, // convert string to float
