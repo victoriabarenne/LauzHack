@@ -25,29 +25,32 @@
 		<div class="conteneur">	
 
 
+			<div id="model1"><img class="rightfloat" src="SIRlocalglobal.png" alt="SIR local global diagram">
+			<h2>Model 1 : Mixed-densisty model</h2>
 
-
-			<div id="model1"><img class="rightfloat" src="SIS.png" alt="SIS diagram" >
-			<h2>Model 1 : SIS Model</h2>
-
-			<p>Je rerédigerais le texte dans le drive. <br><br>Nam tincidunt luctus est a aliquam. Pellentesque pharetra lacus ac varius iaculis. Fusce nec feugiat libero. Nullam id urna diam. Integer consequat orci eu rutrum lobortis. In hac habitasse platea dictumst. In blandit nibh at nulla tristique, a mollis massa efficitur. Donec sed sem porttitor, porttitor orci vel, ornare lorem. Suspendisse massa lectus, ornare et erat nec, bibendum varius urna. Donec auctor faucibus lectus, eu maximus diam tincidunt sit amet. Suspendisse accumsan tellus quis orci cursus consectetur. Etiam facilisis sed diam vitae facilisis. Aenean sed maximus felis, eget sodales augue. Quisque viverra pulvinar ante, imperdiet scelerisque est cursus vel. <br>
-
-			Phasellus pretium pulvinar fringilla. Donec blandit elit sit amet aliquet congue. Donec a vehicula mi. Vestibulum scelerisque tellus enim, et tincidunt diam fermentum ac. Pellentesque vulputate laoreet pharetra. Aenean at sollicitudin felis. Praesent tempor augue mattis sem sodales ornare. Donec et leo pellentesque, pretium nisl a, posuere augue. Fusce sed luctus libero. Nulla facilisis purus eu ante blandit, in lobortis eros pretium. Nulla fermentum, nisi non viverra accumsan, est arcu cursus lorem, blandit euismod nibh lacus quis odio. Mauris faucibus risus urna, id pulvinar nunc pharetra in. Nullam rhoncus dui sit amet dictum consectetur. Cras congue vel eros ultrices cursus. Phasellus pretium augue turpis, rhoncus convallis orci viverra ut. Nulla ante diam, ornare vitae metus in, facilisis facilisis lorem. <br>
-
-			Phasellus pretium pulvinar fringilla. Donec blandit elit sit amet aliquet congue. Donec a vehicula mi. Vestibulum scelerisque tellus enim, et tincidunt diam fermentum ac. Pellentesque vulputate laoreet pharetra. Aenean at sollicitudin felis. Praesent tempor augue mattis sem sodales ornare. Donec et leo pellentesque, pretium nisl a, posuere augue. Fusce sed luctus libero. Nulla facilisis purus eu ante blandit, in lobortis eros pretium. Nulla fermentum, nisi non viverra accumsan, est arcu cursus lorem, blandit euismod nibh lacus quis odio. Mauris faucibus risus urna, id pulvinar nunc pharetra in. Nullam rhoncus dui sit amet dictum consectetur. Cras congue vel eros ultrices cursus. Phasellus pretium augue turpis, rhoncus convallis orci viverra ut. Nulla ante diam, ornare vitae metus in, facilisis facilisis lorem.</p>
-		    </div>
-
-
-			<div id="model2"><img class="rightfloat" src="SIRlocalglobal.png" alt="SIR local global diagram">
-			<h2>Model 2 : SIR Model</h2>
-
-			<p>For this model, we thought it appropriate to divide our interactions into two levels, differentiating local and global ones. Indeed, if we take a look at any individual in our society, we will always notice a more specific group with which interactions are more frequent, be it family, coworkers or just a local community.<br>
-			This is an important aspect to take into account when modeling an epidemic. Once the virus reaches a local community, the rate of the spread within this community becomes significantly higher than at a global level. <br>
-			Take the example of a family: once a family member is infected, there’s a very high likelihood the rest of the family gets infected, much higher than the chance of them getting infected by an outsider.</p>
+			<p>For this model, we thought it appropriate to divide our interactions into two levels, differentiating local and global ones. Indeed, if we take a look at any individual in our society, we will always notice a more specific group with which interactions are more frequent, be it family, coworkers or just a local community.<br><br>
+			This is an important aspect to take into account when modeling an epidemic. Once the virus reaches a local community, the rate of the spread within this community becomes significantly higher than at a global level. <br><br>
+			Take the example of a family: once a family member is infected, there’s a very high likelihood the rest of the family gets infected, much higher than the chance of them getting infected by an outsider.<br><br>
+			This model produces a basic reproductive rate R0, i.e. the average number of people a single infected individual will pass the virus onto. The following two models take this parameter into account<br><br></p>
 			</div>
 
 
-			<div id="model3"><img class="rightfloat" src="SIRCONTINUOUS.png" alt="futur_schema">
+
+			<div id="model2"><img class="rightfloat" src="SIS.png" alt="SIS diagram" >
+			<h2>Model 2 : SIS Model</h2>
+
+			<p>The first model we used to represent an epidemic, is an SIS model, where the considered population is divided into two categories:<br>
+			S, the healthy individuals, susceptible of contracting the virus,<br>
+			I, the infected individuals.<br><br>
+			The model works as follows:<br>
+				Each infected individual comes in contact with β healthy individuals, which will then contract the virus <br>
+				The rate of recovery is γ: once an individual has recovered, he is considered healthy again and is not exempt from contracting the virus a second time<br>
+				We consider a birth rate and death rate equal to b, allowing us to keep the considered population steady<br>
+			</p>
+		    </div>
+
+
+			<div id="model3">
 			<h2>Model 3 : SIR Continuous Model</h2>
 
 			<p>Des idées de schéma pour cette situation? <br><br>Phasellus pretium pulvinar fringilla. Donec blandit elit sit amet aliquet congue. Donec a vehicula mi. Vestibulum scelerisque tellus enim, et tincidunt diam fermentum ac. Pellentesque vulputate laoreet pharetra. Aenean at sollicitudin felis. Praesent tempor augue mattis sem sodales ornare. Donec et leo pellentesque, pretium nisl a, posuere augue. Fusce sed luctus libero. Nulla facilisis purus eu ante blandit, in lobortis eros pretium. Nulla fermentum, nisi non viverra accumsan, est arcu cursus lorem, blandit euismod nibh lacus quis odio. Mauris faucibus risus urna, id pulvinar nunc pharetra in. Nullam rhoncus dui sit amet dictum consectetur. Cras congue vel eros ultrices cursus. Phasellus pretium augue turpis, rhoncus convallis orci viverra ut. Nulla ante diam, ornare vitae metus in, facilisis facilisis lorem.<br>
