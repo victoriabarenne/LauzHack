@@ -44,7 +44,7 @@ nav ul{
 
 nav li{
 	float: left; /*Align the list horizontaly*/
-	width: 16.65%; /*20% because 5 elements*/
+	width: 20%; /*20% because 5 elements*/
 	text-align : center;
 }
 
