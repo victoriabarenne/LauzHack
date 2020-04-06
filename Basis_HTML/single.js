@@ -14,13 +14,6 @@ var stack = d3.stack()
     .order(d3.stackOrderNone)
     .offset(d3.stackOffsetNone);
 
-// var svg = d3.select("#vis")
-//   .append("svg")
-//   .attr("width", width)
-//   .attr("height", 4.5*margin.top);
-
-
-
 var svg = d3.select("#vis").append("svg")
   .attr("width", width)
   .attr("height", height)
@@ -35,27 +28,27 @@ var g = svg.append("g")
 
 // // slider left
 var gTime = svg.append("g")
-  .attr("transform", "translate(1180, 120)");
+  .attr("transform", "translate(1040, 120)");
 
 var g2Time = svg.append("g")
-  .attr("transform", "translate(1180, 180)");
+  .attr("transform", "translate(1040, 180)");
 
 var g3Time = svg.append("g")
-  .attr("transform", "translate(1180, 240)");
+  .attr("transform", "translate(1040, 240)");
 
 svg.append("text")
 .text("\u03BC" + "G")
-.attr("x", 1120)
+.attr("x", 990)
 .attr("y", 128);
 
 svg.append("text")
 .text("\u03BC"+"L")
-.attr("x", 1120)
+.attr("x", 990)
 .attr("y", 188);
 
 svg.append("text")
 .text("L")
-.attr("x", 1120)
+.attr("x", 995)
 .attr("y", 248);
 
 // function creating slider

@@ -31,41 +31,41 @@ var g3Time = svg.append("g")
 
 svg.append("text")
 .text("\u03BC" + "G")
-.attr("x", 1.6*margin.top)
-.attr("y", 1.08*margin.left);
+.attr("x", 2*margin.top)
+.attr("y", 1.09*margin.left);
 
 svg.append("text")
 .text("\u03BC"+"L")
-.attr("x", 1.6*margin.top)
+.attr("x", 2*margin.top)
 .attr("y", 115);
 
 svg.append("text")
 .text("L")
-.attr("x", 1.6*margin.top)
+.attr("x", 2*margin.top)
 .attr("y", 175);
 
 var hTime = svg.append("g")
-  .attr("transform", "translate(970, 50)");
+  .attr("transform", "translate(870, 50)");
 
 var h2Time = svg.append("g")
-  .attr("transform", "translate(970, 110)");
+  .attr("transform", "translate(870, 110)");
 
 var h3Time = svg.append("g")
-  .attr("transform", "translate(970, 170)");
+  .attr("transform", "translate(870, 170)");
 
 svg.append("text")
 .text("\u03BC" + "G")
-.attr("x", 900)
-.attr("y", 1.08*margin.left);
+.attr("x", 820)
+.attr("y", 1.09*margin.left);
 
 svg.append("text")
 .text("\u03BC"+"L")
-.attr("x", 900)
+.attr("x", 820)
 .attr("y", 115);
 
 svg.append("text")
 .text("L")
-.attr("x", 900)
+.attr("x", 820)
 .attr("y", 175);
 
 var svg = d3.select("#vis").append("svg")
