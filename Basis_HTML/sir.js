@@ -1,6 +1,6 @@
 var dataset = {}; 
 var series = {};
-var len = null; 
+// var len = null; 
 var legend; 
 
 var margin = {top: 50, right: 50, bottom: 50, left: 50}
@@ -40,32 +40,32 @@ svg.append("text")
 .attr("y", 115);
 
 svg.append("text")
-.text("L")
+.text("D")
 .attr("x", 2*margin.top)
 .attr("y", 175);
 
 var hTime = svg.append("g")
-  .attr("transform", "translate(870, 50)");
+  .attr("transform", "translate(" + width/1.7 + ", 50)");
 
 var h2Time = svg.append("g")
-  .attr("transform", "translate(870, 110)");
+  .attr("transform", "translate(" + width/1.7 + ", 110)");
 
 var h3Time = svg.append("g")
-  .attr("transform", "translate(870, 170)");
+  .attr("transform", "translate(" + width/1.7 + ", 170)");
 
 svg.append("text")
 .text("\u03BC" + "G")
-.attr("x", 820)
-.attr("y", 1.09*margin.left);
+.attr("x", (width/1.7-margin.left))
+.attr("y", 1.1*margin.left);
 
 svg.append("text")
 .text("\u03BC"+"L")
-.attr("x", 820)
+.attr("x", (width/1.7-margin.left))
 .attr("y", 115);
 
 svg.append("text")
-.text("L")
-.attr("x", 820)
+.text("D")
+.attr("x", (width/1.7-margin.left))
 .attr("y", 175);
 
 var svg = d3.select("#vis").append("svg")
@@ -135,7 +135,7 @@ var L2 = d3.sliderBottom()
 
 var rightNow = [0.25, 1, 7];
 
-var promises = [d3.dsv(",", "example.csv", function(d, i) {
+var promises = [d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
   return {
     ind: i,
     S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -147,7 +147,7 @@ var promises = [d3.dsv(",", "example.csv", function(d, i) {
 function handleChange1(val) { // val is the current value on the slider
   rightNow[0] = val; // update value on cursor 
 
-  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+  promises[0] = d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
     return {
       ind: i,
       S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -162,7 +162,7 @@ function handleChange1(val) { // val is the current value on the slider
 function handleChange12(val) { // val is the current value on the slider
   rightNow[0] = val; // update value on cursor 
 
-  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+  promises[0] = d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
     return {
       ind: i,
       S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -177,7 +177,7 @@ function handleChange12(val) { // val is the current value on the slider
 function handleChange2(val) { // val is the current value on the slider
   rightNow[1] = val; // update value on cursor
 
-  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+  promises[0] = d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
     return {
       ind: i,
       S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -191,7 +191,7 @@ function handleChange2(val) { // val is the current value on the slider
 function handleChange22(val) { // val is the current value on the slider
   rightNow[1] = val; // update value on cursor
 
-  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+  promises[0] = d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
     return {
       ind: i,
       S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -205,7 +205,7 @@ function handleChange22(val) { // val is the current value on the slider
 
 function handleChange3(val) { // val is the current value on the slider
   rightNow[2] = val; // update value on cursor 
-  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+  promises[0] = d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
     return {
       ind: i,
       S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -217,7 +217,7 @@ function handleChange3(val) { // val is the current value on the slider
 }
 function handleChange32(val) { // val is the current value on the slider
   rightNow[2] = val; // update value on cursor 
-  promises[0] = d3.dsv(",", "example.csv", function(d, i) {
+  promises[0] = d3.dsv(",", "https://raw.githubusercontent.com/victoriabarenne/LauzHack/master/Basis_HTML/example.csv", function(d, i) {
     return {
       ind: i,
       S: +d["S"+rightNow[0]+rightNow[1]+rightNow[2]],
@@ -236,12 +236,17 @@ hTime.call(muG2);
 h2Time.call(muL2);
 h3Time.call(L2);
 
+
 Promise.all(promises).then(ready); // the one called by default 
 // hence modifies both left and right 
 
+
 function ready(data) {
+  var len;
   dataset = data[0];
+  console.log(dataset);
   series = stack(data[0]);
+  console.log(series);
   if (dataset.find(element => ((element.S == 0) && (element.I == 0) && (element.R == 0)))) {
   len = dataset.find(element => ((element.S == 0) && (element.I == 0) && (element.R == 0))).ind;
  } else {
@@ -286,24 +291,28 @@ function ready(data) {
     .attr("class", "xaxis")
     .attr("transform", "translate(0," + (height-2*margin.bottom) + ")")
     .call(d3.axisBottom(xScale)
-      .tickPadding(10));
+      .tickPadding(10))
+    .attr("class", "left");
 
   // y axis
   svg.append("g")
     .attr("class", "yaxis")
-    .call(d3.axisLeft(yScale));
+    .call(d3.axisLeft(yScale))
+    .attr("class", "left");
 
     svg.append("g")
     .attr("class", "xaxis")
     .attr("transform", "translate(" + width/2.2 + "," + (height-2*margin.bottom) + ")")
     .call(d3.axisBottom(xScale)
-      .tickPadding(10));
+      .tickPadding(10))
+    .attr("class", "right");
 
   // y axis
   svg.append("g")
     .attr("class", "yaxis")
     .attr("transform", "translate(" + width/2.2 + ",0)")
-    .call(d3.axisLeft(yScale));
+    .call(d3.axisLeft(yScale))
+    .attr("class", "right");
 
   areaChart
     .selectAll("mylayers")
@@ -365,8 +374,11 @@ function ready(data) {
 
 
 function ready1(data) {
+  var len;
   dataset = data[0];
+  console.log(dataset);
   series = stack(data[0]);
+  console.log(series);
   if (dataset.find(element => ((element.S == 0) && (element.I == 0) && (element.R == 0)))) {
   len = dataset.find(element => ((element.S == 0) && (element.I == 0) && (element.R == 0))).ind;
  } else {
@@ -382,6 +394,19 @@ function ready1(data) {
     //.domain([0, series[0][0].data.S]) // S will have highest value since it can be tot pop
     .range([height-2*margin.bottom, margin.top*0.5])
     .nice();
+
+      svg.append("g")
+    .attr("class", "xaxis")
+    .attr("transform", "translate(0," + (height-2*margin.bottom) + ")")
+    .call(d3.axisBottom(xScale)
+      .tickPadding(10))
+    .attr("class", "left");
+
+  // y axis
+  svg.append("g")
+    .attr("class", "yaxis")
+    .call(d3.axisLeft(yScale))
+    .attr("class", "left");
 
   var keys = ["I", "S", "R"];
   var color = d3.scaleOrdinal()
@@ -411,6 +436,7 @@ function ready1(data) {
 
 
 function ready2(data) {
+  var len;
   dataset = data[0];
   series = stack(data[0]);
   if (dataset.find(element => ((element.S == 0) && (element.I == 0) && (element.R == 0)))) {
@@ -428,6 +454,20 @@ function ready2(data) {
     //.domain([0, series[0][0].data.S]) // S will have highest value since it can be tot pop
     .range([height-2*margin.bottom, margin.top*0.5])
     .nice();
+
+        svg.append("g")
+    .attr("class", "xaxis")
+    .attr("transform", "translate(" + width/2.2 + "," + (height-2*margin.bottom) + ")")
+    .call(d3.axisBottom(xScale)
+      .tickPadding(10))
+    .attr("class", "right");
+
+  // y axis
+  svg.append("g")
+    .attr("class", "yaxis")
+        .attr("transform", "translate(" + width/2.2 + ",0)")
+    .call(d3.axisLeft(yScale))
+    .attr("class", "right");
 
   var keys = ["I", "S", "R"];
   var color = d3.scaleOrdinal()
@@ -454,6 +494,5 @@ function ready2(data) {
       .attr("d", area)
       .attr("class", "color")
       .attr("class", "right")
-
 
 }

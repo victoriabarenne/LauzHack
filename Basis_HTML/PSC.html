@@ -17,9 +17,9 @@
 		<nav>
 			<ul>
 				<li><a href = "home.html">Home</a></li>
-				<li><a href = "TCM.html">Comparison Mode</a></li>
+				<li><a href = "Model.html">Modelisation</a></li>
 				<li><a href = "PSC.html">Pre-selected Comparisons</a></li>
-				<li><a href = "Model.html">Modeling Technique</a></li>
+				<li><a href = "TCM.html">Comparison Mode</a></li>
 				<li><a href = "about.html">About</a></li>
 			</ul>
 		</nav>
@@ -27,68 +27,94 @@
 		<div class="conteneur">	
 
 			<p> In this section, we provide a few one-on-one simulation comparisons as an example of what you can do with our <a href = "TCM.html">
-			<u>comparison mode</u> tab</a>. One can draw interesting insights from these models. <br></p>
+			<u>comparison mode</u> tab</a> and some interesting conclusions one can draw from them.<br></p>
 
-			<p> We remind you that the paremeters we modify during our simulations are:<br><br></p>
+			<p>These simulations were done with a total population of a million, divided into smaller communities of 100 individuals (meaning there are 10,000 communities).<br>And the parameters we changed during these simulations were:<br><br></p>
 
 			<ul class="tiret">
   				<li>μG, the average global infections caused by a single infected individual,</li>
-  				<li>μL, the average inter-community infections caused by a single infected individual of this community,</li>
+  				<li>μL, the level of local confinement, i.e. the exposure of indiviuals to other within their local community <p class="nospace"> 1: low level of confinement, <br> 2: moderate level of confinement, <br> 3: high level of confinement.</p> </li>
   				<li>D, the average duration of the infection, during which individuals are contagious.</li>
 			</ul>
 
+			<p>A smaller μG (resp. μL) represents less frequent interactions on a global (resp. local) level.
+			Thus, changing these parameters will let you represent different degrees of confinement or behavior during confinement. </p>
 
-			<div id="comparaison1">
-			<h2>1. Low vs. High level of Local Confinement</h2>
 
-			<p>In this comparaison, μG = 0.25 and D = 7 are fixed for both graphs and we only change the level of the local confinement. With a more lax confinement policy, as in the second graph, the equilibrium stage is reached sooner. This explains the argument in favor of collective immunity adopted by many countries in the present case of COVID-19 disease: the sooner the equilibrium is reached, the faster we can restart the economy and get back to our usual routines. <br><br>
-			While at first glance, this might seem like the fastest way to end the pandemic, the reality is much more nuanced. We see that in the low local confinement model, the peak of infected people goes up to 800,000, versus 600,000 in the high local confinement model. With a higher peak, there are more chances of the healthcare system being overworked, resulting in a higher total mortality rate.<br><br>
-			(to review) Note that: In an SIS model, since any inividual can get infected multiple time, the system eventually stabilizes with the number of infected poeple non zero (to review)
-			</p>
+			<p> Note to reader: in the following comparaisons, we used the SIR continuous model described <a href = "Model.html">
+			<u>here</u></a>.</p>
 
-			<p style="color:red;font-weight:bold;">Insert JavaScript code comparing 13.B with 14.B (we'll do it later, after all the SIRS ones have been properly implemented), no slider at all</p>
-			
+
+
+
+<!------------------------------------------------------------------------->		
 
 			<div id="comparaison2">
-			<h2>2. Low vs. High level of Global Confinement</h2>
-
-			<p> (to review) We observe the same phenomenon as above, 
-			Confinement measures lower the peak of the epidemic, ie the highest number of infected people during a given time. (to review)</p>
-			</div>
+			<h3>1. Low vs. High level of Global Confinement</h3>
 
 
+		<div class="gallery">
+  			<a target="_blank" href="comp1.png">
+    		<img src="comp1.png" alt="comp1">
+ 			</a>
+  			<div class="desc"><b>Left</b>: μG=0.25, moderate local confinement, D=7 and <b>Right</b>: μG=2, moderate:50, D=7</div>
+		</div>
+		</div>
 
-			<p style="color:red;font-weight:bold;">Insert JavaScript code comparing 15.A with 3.A no slider at all</p>
+
+			<p>In this comparaison, we only change the level of the global confinement. With a more lax confinement policy, as in the second graph, the equilibrium stage is reached sooner. This explains the argument in favor of collective immunity adopted by many countries in the present case of COVID-19 disease: the sooner the equilibrium is reached, the faster we can restart the economy and get back to our usual routines. <br><br>
+			While at first glance, this might seem like the fastest way to end the pandemic, the reality is much more nuanced. We see that in the low local confinement model, the peak of infected people goes up to 800,000, versus 600,000 in the high local confinement model. With a higher peak, there are more chances of the healthcare system being overworked, resulting in a higher total mortality rate.</p>
+
+		</div>
 
 
+<!------------------------------------------------------------------------->
 
 			<div id="comparaison3">
-			<h2>3. 7 vs. 20 days of Virus Duration</h2>
+			<h3>2. 7 vs. 20 days of Virus Duration</h3>
 
-			<p> (toreview) Here we want to see the effect of the duration of contagion. We keep the other parameters fixed. Even if the solutions look a priori similar, they do not progress towards a  stable state at the same rate. In fact, the graph on the right, representing a longer duration of contagion, progresses less rapidly: The curve for the recovered patients begins to stabilize between 50 and 100 time units versus between 10 and 30 for the curve on the left with a duration three times shorter. This aspect can then be improved if a treatment is developed or with a better health system. (to review)
-			</p>
+		<div class="gallery">
+  			<a target="_blank" href="comp2.png">
+    		<img src="comp2.png" alt="comp2">
+ 			</a>
+  			<div class="desc"><b>Left</b>: μG=0.75, high local confinement, D=7 and <b>Right</b>: μG=0.75, high local confinement, D=20</div>
+		</div>
+		</div>
+
+			<p> Here, having fixed all other parameters, we can observe the impact the duration of infection has on the spread. In both cases, the maximum number of infected individuals at a time are equal. However, with a 3 weeks duration of infection, the epidemic lasts 3 times as long. </p>
+
 			</div>
 
 
-
-			<p style="color:red;font-weight:bold;">Insert JavaScript code comparing 7.A with 8.A no slider at all</p>
-
+<!------------------------------------------------------------------------->
 
 			<div id="comparaison4">
-			<h2>4. Mixed Comparison</h2>
+			<h3>3. Mixed Comparison</h3>
 
-			<p> (to review)We compared these models to see whether we should privilege local or global confinement.
-			Both models reach the peak of the epidemic quite fast. A noticeable difference is the value of the peak, which is lower in the high global confinement/low local confinement than in the low global confinement/high local confinement. 
-			global confinement has a higher impact on slowing down the spread of the virus than local confinement (to review)
+		<div class="gallery">
+  			<a target="_blank" href="comp3.png">
+    		<img src="comp3.png" alt="comp3">
+ 			</a>
+  			<div class="desc"><b>Left</b>: μG=2, high local confinement, D=7 and <b>Right</b>: μG=0.25, low local confinement, D=7</div>
+		</div>
+		</div>
+
+
+			<p> We compared these models to see whether we should privilege local or global confinement.
+			Both models reach the peak of the epidemic quite fast. A noticeable difference is the value of the peak, which is lower in high global confinement/low local confinement than in low global confinement/high local confinement. 
+			This shows that global confinement has a higher impact on slowing down the spread of the virus than local confinement. <br><br>
+			These results make sense. With really few global interactions, once the virus hits a local community, worse case scenario all 100 individuals of the community get infected; with very little chances of spreading to other communities. Whereas with a lot of global interactions, it's very likely a high proportion of the 10000 communities get an infected individual. Even if, locally, the virus doesn't spread, you've already infected way more than a few hundreds of individuals.<br><br>
+			Of course these results are due to our choice of global and local communities. We leave it to the reader to decide whether this model would be valid in representing a big city and its smaller inner-city communities.<br><br><br><br>
+
 			</p>
+
+
 			</div>
-
-
-
-			<p style="color:red;font-weight:bold;">Insert JavaScript code comparing 1.A with 17.A no slider at all</p>
 
 
 
 		</div>
 	</body>
 </html>
+
+

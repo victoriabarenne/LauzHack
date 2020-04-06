@@ -19,9 +19,9 @@
 		<nav>
 			<ul>
 				<li><a href = "home.html">Home</a></li>
-				<li><a href = "SCM.html">Single View Mode</a></li>
+				<li><a href = "Model.html">Modelisation</a></li>
 				<li><a href = "PSC.html">Pre-selected Comparisons</a></li>
-				<li><a href = "Model.html">Modeling Technique</a></li>
+				<li><a href = "SCM.html">Single View Mode</a></li>
 				<li><a href = "about.html">About</a></li>
 			</ul>
 		</nav>
@@ -29,7 +29,7 @@
 		<div class="conteneur">	
 			<h2>Compare different models</h2>
 
-			<p> Here, you have the possibility to change the values of different parameters affecting the spread, and to compare the results. These simulations were done with a total population of a million, divided into smaller communities of 100 individuals.<br><br>You can play around with the following parameters:</p>
+			<p> Welcome to Comparaison Mode! Here, you have the possibility to change the values of different parameters affecting the spread, and to compare the results.<br><br> We remind you that you can play around with the following parameters:<br><br></p>
 
 			<ul class="tiret">
   				<li>μG, the average global infections caused by a single infected individual,</li>
@@ -37,13 +37,16 @@
   				<li>D, the average duration of the infection, during which individuals are contagious.</li>
 			</ul>
 
-			<p>A smaller μG (resp. μL) represents less frequent interactions on a global (resp. local) level.
-			Thus, changing these parameters will let you represent different degrees of confinement or behavior during confinement.<br><br>
+			<p> If you only want to see a single simulation at a time, full-screen, go check out our <a href = "SCM.html">
+			<u>Single View mode</u> tab.</a></p>
 
-			Note that: μG and μL are the average direct infections. Note the whole chain of infections it will then cause (à reformuler, mais en gros préciser que c’est juste la première génération d’infection)</p>
+			<p> Note to the user: In Comparaison Mode, the scale was supposed to adapt so that with any parameter choice, the two graphs would have the same scale; making it easier to compare them. Due to the lack of time, we came short in the context of this project but plan to implement it at a later point. <br><br></p>
 
-<!-- 			<p style="color:red;font-weight:bold;">Insert JavaScript Two Models Comparaison</p>
- -->                       
+			
+
+
+
+                       
           <div id = "vis"></div>
           <script src="sir.js"></script>			
 

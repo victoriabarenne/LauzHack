@@ -8,8 +8,8 @@
 /* Wallpaper */
 body{
 	/*background-color: #fff9e6; */
-    /* background-color: #f3f3f3; */
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
+    background-color: white;
     font-family: sans-serif;
 }
 
@@ -82,16 +82,32 @@ nav ul::after{
 /*Contenu*/
 h2 {
 	/*background-color : lightBlue; /*Maintenance*/
-	margin-left : 60px;
+	margin-left : 90px;
 	margin-right :40px;
 	margin-bottom : 20px;
 }
 
+
+h3 {
+	/*background-color : lightBlue; /*Maintenance*/
+	margin-left : 90px;
+	margin-right :40px;
+	margin-bottom : 20px;
+	font-size: 25px;
+}
+
 p{
 	/*background-color: lightGreen; /* Maintenance*/
-	margin-right: 40px;
-	margin-left: 40px;
+	margin-right: 70px;
+	margin-left: 70px;
 	margin-top:20px;
+    text-align : justify;
+}
+
+p.nospace{
+	margin-right: 70px;
+	margin-left: 70px;
+	margin-top: 0px;
     text-align : justify;
 }
 
@@ -134,7 +150,8 @@ img.rightfloat {
     margin-left:20px;
     margin-right : 20px;
     margin-bottom : auto;
-    width:300px;       
+    width:300px;
+    clear:right;       
  }
 
 
@@ -146,7 +163,8 @@ les différentes sections des 3 modèles sur SCM*/
 
  #model3{                    
     margin-top:80px;
-    margin-bottom: 100px;     
+    margin-bottom: 100px;
+    clear:right;    
  }
 
  .tiret {
@@ -155,8 +173,8 @@ les différentes sections des 3 modèles sur SCM*/
 }
 
 #comparaison1, #comparaison2, #comparaison3, #comparaison4{                    
-    margin-top:30px;
-    margin-bottom: 40px;     
+    margin-top:40px;
+    margin-bottom: 60px;     
  }
 
 /* ========================== Text ============================== */
@@ -175,6 +193,52 @@ a{
     text-decoration:none;
     color: black;
 }
+
+
+/*=====*/
+
+div.comparasiongal
+{
+  margin-bottom: 100px;	
+  float:middle;
+}
+
+
+
+div.gallery {
+  border: 0px solid #ccc;
+  width: 90%;
+  margin-right:40px;
+  margin-left:40px;
+  margin-bottom:40px;
+}
+
+/*Effet hover
+div.gallery:hover {
+  border: 2px solid #777;
+}
+*/
+
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 10px;
+  text-align: center;
+} 
+
+
+#logo {
+  width:200px;
+  position: absolute;
+  bottom:0;
+  right:0;
+  margin-right: 40px;
+
+} 
 
 
 
