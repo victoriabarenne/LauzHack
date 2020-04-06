@@ -14,35 +14,11 @@ var stack = d3.stack()
     .order(d3.stackOrderNone)
     .offset(d3.stackOffsetNone);
 
-var svg = d3.select("#vis")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", 4.5*margin.top);
+// var svg = d3.select("#vis")
+//   .append("svg")
+//   .attr("width", width)
+//   .attr("height", 4.5*margin.top);
 
-// slider left
-var gTime = svg.append("g")
-  .attr("transform", "translate(150, 50)");
-
-var g2Time = svg.append("g")
-  .attr("transform", "translate(150, 110)");
-
-var g3Time = svg.append("g")
-  .attr("transform", "translate(150, 170)");
-
-svg.append("text")
-.text("\u03BC" + "G")
-.attr("x", 1.6*margin.top)
-.attr("y", 1.08*margin.left);
-
-svg.append("text")
-.text("\u03BC"+"L")
-.attr("x", 1.6*margin.top)
-.attr("y", 115);
-
-svg.append("text")
-.text("L")
-.attr("x", 1.6*margin.top)
-.attr("y", 175);
 
 
 var svg = d3.select("#vis").append("svg")
@@ -57,17 +33,40 @@ var g = svg.append("g")
     .attr("class", "key") 
     .attr("transform", "translate(" + 2*margin.right + ",100)"); 
 
+// // slider left
+var gTime = svg.append("g")
+  .attr("transform", "translate(1180, 120)");
+
+var g2Time = svg.append("g")
+  .attr("transform", "translate(1180, 180)");
+
+var g3Time = svg.append("g")
+  .attr("transform", "translate(1180, 240)");
+
+svg.append("text")
+.text("\u03BC" + "G")
+.attr("x", 1120)
+.attr("y", 128);
+
+svg.append("text")
+.text("\u03BC"+"L")
+.attr("x", 1120)
+.attr("y", 188);
+
+svg.append("text")
+.text("L")
+.attr("x", 1120)
+.attr("y", 248);
+
 // function creating slider
 var muG = d3.sliderBottom()
   .min(0.25)
   .max(2)
   .tickValues([0.25, 0.75, 2])
   .tickFormat(d3.format(',.2f'))
-  .width(300)
+  .width(250)
   .marks([.25, 0.75, 2])
   .on('onchange', handleChange1); // handles thisYear
-
-
 
 var muL = d3.sliderBottom()
   .min(1)
@@ -75,20 +74,16 @@ var muL = d3.sliderBottom()
   .tickValues([1, 2, 3])
   .tickFormat(d3.format(',.0f'))
   .step(1)
-  .width(300)
+  .width(250)
   .on('onchange', handleChange2);
-
-
 
 var L = d3.sliderBottom()
   .min(7)
   .max(20)
   .tickValues([7,20])
-  .width(300)
+  .width(250)
   .step(13) 
   .on('onchange', handleChange3);
-
-
 
 var rightNow = [0.25, 1, 7];
 
@@ -112,7 +107,6 @@ function handleChange1(val) { // val is the current value on the slider
       R: +d["R"+rightNow[0]+rightNow[1]+rightNow[2]] }
   });
   d3.selectAll(".left").remove();
-
   Promise.all(promises).then(ready1);
 }
 
@@ -173,13 +167,11 @@ function handleChange3(val) { // val is the current value on the slider
   Promise.all(promises).then(ready1);
 }
 
-
 gTime.call(muG); // muG for left graph
 g2Time.call(muL); // muL for left graph 
 g3Time.call(L);
 
 Promise.all(promises).then(ready); // the one called by default 
-// hence modifies both left and right 
 
 function ready(data) {
   dataset = data[0];
@@ -197,7 +189,7 @@ function ready(data) {
   var yScale = d3.scaleLinear()
     .domain([0, 1000000])
     //.domain([0, series[0][0].data.S]) // S will have highest value since it can be tot pop
-    .range([height-2*margin.bottom, margin.top*0.5])
+    .range([height-2*margin.bottom, margin.top])
     .nice();
 
   var keys = ["I", "S", "R"];
@@ -240,8 +232,8 @@ function ready(data) {
     // Add X axis label:
   svg.append("text")
       .attr("text-anchor", "end")
-      .attr("x", width/1.25)
-      .attr("y", height-margin.bottom )
+      .attr("x", width/1.5)
+      .attr("y", height-0.9*margin.bottom )
       .attr("class", "text")
       .text("Time elapsed");
 
@@ -250,34 +242,30 @@ function ready(data) {
       .attr("text-anchor", "end")
       .attr("x", .7*margin.left)
       .attr("class", "text")
-      .attr("y", 10)
+      .attr("y", 0.5*margin.top)
       .text("Total Population")
       .attr("text-anchor", "start")
 
     legend = svg.selectAll(".legend")                    
       .data(keys)
-      .enter().append("g") // setting the groups to append the rectangles 
-      // .attr("class", "legend")                                 
-      .attr("transform", function(d, i) {                   
-        var hor = width/1.2;           
-        var ver = 2.8*margin.top + i/1.3*margin.top;                 
+      .enter().append("g")
+      .attr("transform", function(d, i) {      
+        var hor = width/1.45 + i/1.3*margin.top;
+        var ver = .75*margin.top;                         
         return "translate(" + hor + "," + ver + ")"; });    
 
   legend.append("rect")   
     .attr("class", "legend")                           
     .attr("width", legendRectSize)                  
     .attr("height", legendRectSize)                        
-    .style("fill", function(d) {
-      return color(d); })                          
-    .style("stroke", function(d) {
-      return color(d); });  
+    .style("fill", function(d) { return color(d); })                          
+    .style("stroke", function(d) { return color(d); });  
 
   legend.append("text")  
     .attr("class", "legend")                       
-    .attr("x", legendRectSize + 4*legendSpacing)           
-    .attr("y", 5.6*legendSpacing)              
-    .text(function(d) { 
-      return d; }) // this d comes from the legend data
+    .attr("x", legendRectSize/2)           
+    .attr("y", -2*legendSpacing)              
+    .text(function(d) { return d; }) // this d comes from the legend data
     .style("font-size", 20)
     .style("text-anchor", "middle");  
 
@@ -300,7 +288,7 @@ function ready1(data) {
   var yScale = d3.scaleLinear()
     .domain([0, 1000000])
     //.domain([0, series[0][0].data.S]) // S will have highest value since it can be tot pop
-    .range([height-2*margin.bottom, margin.top*0.5])
+    .range([height-2*margin.bottom, margin.top])
     .nice();
 
   var keys = ["I", "S", "R"];
