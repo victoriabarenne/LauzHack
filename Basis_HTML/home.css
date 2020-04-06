@@ -112,7 +112,8 @@ p{
 
  .line {                    
       fill: none;            
-    stroke-width: 3;       
+    stroke-width: 3;   
+    clip-path: url(#clip);    
  }
 
 #vis{
